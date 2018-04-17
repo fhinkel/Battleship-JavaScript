@@ -1,3 +1,6 @@
+var socket = io()
+
+
 // set grid rows and columns and the size of each square
 var rows = 10;
 var cols = 10;
