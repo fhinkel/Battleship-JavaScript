@@ -1,0 +1,20 @@
+{
+  "name": "battleship-javascript",
+  "version": "1.0.0",
+  "description": "A very very simple Battleship game written in plain JavaScript: http://learntocodela.github.io/Battleship-JavaScript/",
+  "main": "battleship.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LearnTeachCode/Battleship-JavaScript.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LearnTeachCode/Battleship-JavaScript/issues"
+  },
+  "homepage": "https://github.com/LearnTeachCode/Battleship-JavaScript#readme"
+}
