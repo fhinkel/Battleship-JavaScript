@@ -30,37 +30,33 @@ for (i = 0; i < cols; i++) {
 	}
 }
 
-/* lazy way of tracking when the game is won: just increment hitCount on every hit
-   in this version, and according to the official Hasbro rules (http://www.hasbro.com/common/instruct/BattleShip_(2002).PDF)
-   there are 17 hits to be made in order to win the game:
-      Carrier     - 5 hits
-      Battleship  - 4 hits
-      Destroyer   - 3 hits
-      Submarine   - 3 hits
-      Patrol Boat - 2 hits
-*/
-var hitCount = 0;
-
-/* create the 2d array that will contain the status of each square on the board
-   and place ships on the board (later, create function for random placement!)
-
-   0 = empty, 1 = part of a ship, 2 = a sunken part of a ship, 3 = a missed shot
-*/
-var gameBoard = [
-				[0,0,0,1,1,1,1,0,0,0],
-				[0,0,0,0,0,0,0,0,0,0],
-				[0,0,0,0,0,0,0,0,0,0],
-				[0,0,0,0,0,0,1,0,0,0],
-				[0,0,0,0,0,0,1,0,0,0],
-				[1,0,0,0,0,0,1,1,1,1],
-				[1,0,0,0,0,0,0,0,0,0],
-				[1,0,0,1,0,0,0,0,0,0],
-				[1,0,0,1,0,0,0,0,0,0],
-				[1,0,0,0,0,0,0,0,0,0]
-				]
-
 // set event listener for all elements in gameboard, run fireTorpedo function when square is clicked
-gameBoardContainer.addEventListener("click", fireTorpedo, false);
+gameBoardContainer.addEventListener("click", function(e) {
+	// if item clicked (e.target) is not the parent element on which the event listener was set (e.currentTarget)
+	if (e.target !== e.currentTarget) {
+		socket.emit('fireTorpedo', e.target.id)
+	}
+}, false);
+
+socket.on('miss', function(id) {
+	var row = id.substring(1,2);
+	var col = id.substring(2,3);
+	console.log("Received miss on row " + row + ", col " + col);
+	var field = document.getElementById(id);
+	field.style.background = '#bbb';
+})
+
+socket.on('hit', function(id) {
+	var row = id.substring(1,2);
+	var col = id.substring(2,3);
+	console.log("Received hit on row " + row + ", col " + col);
+	var field = document.getElementById(id);
+	field.style.background = 'red';
+})
+
+socket.on('win', function() {
+	alert("All enemy battleships have been defeated! You win!");
+})
 
 // initial code via http://www.kirupa.com/html5/handling_events_for_many_elements.htm:
 function fireTorpedo(e) {
