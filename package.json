@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/LearnTeachCode/Battleship-JavaScript/issues"
   },
-  "homepage": "https://github.com/LearnTeachCode/Battleship-JavaScript#readme"
+  "homepage": "https://github.com/LearnTeachCode/Battleship-JavaScript#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
 }
