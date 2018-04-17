@@ -1,11 +1,14 @@
 const express = require('express');
+
 const path = require('path')
 
 const app = express();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.get('/', (req, res) => {
+app.get('/hello', (req, res) => {
   res.status(200).send('Hello, world!').end();
 });
 

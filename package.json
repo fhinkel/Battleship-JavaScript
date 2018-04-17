@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/LearnTeachCode/Battleship-JavaScript#readme",
   "dependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "socket.io": "^2.1.0",
+    "socketio": "^1.0.0"
   }
 }
