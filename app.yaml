@@ -1,4 +1,3 @@
 runtime: nodejs8
-automatic_scaling:
-    max_concurrent_requests: 1
-    min_idle_instances: 8
+manual_scaling:
+    instances: 8
