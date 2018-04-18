@@ -6,10 +6,11 @@ const app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
+const ID = Math.floor(Math.random() * 1000);
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('/hello', (req, res) => {
-  res.status(200).send('Hello, world!').end();
+  res.status(200).send('Hello, world! This is robot #' + ID + '.').end();
 });
 
 io.on('connection', function(socket){
