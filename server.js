@@ -21,13 +21,13 @@ io.on('connection', function(socket){
         console.log("Clicked on row " + row + ", col " + col);
 				
 		// if player clicks a square with no ship, change the color and change square's value
-		if (gameBoard[row][col] == 0) {
+		if (gameBoard[row][col] == 0 || gameBoard[row][col] == 3) {
             socket.emit('miss', id);
 			// set this square's value to 3 to indicate that they fired and missed
 			gameBoard[row][col] = 3;
 			
 		// if player clicks a square with a ship, change the color and change square's value
-		} else if (gameBoard[row][col] == 1) {
+		} else if (gameBoard[row][col] == 1 || gameBoard[row][col] == 2) {
             socket.emit('hit', id)
 			// set this square's value to 2 to indicate the ship has been hit
 			gameBoard[row][col] = 2;
@@ -38,10 +38,6 @@ io.on('connection', function(socket){
 			if (hitCount == 17) {
 				socket.emit('win')
 			}
-			
-		// if player clicks a square that's been previously hit, let them know
-		} else if (gameBoard[row][col] > 1) {
-			console.log("Stop wasting your torpedos! You already fired at this location.");
 		}		
     })
 });
